@@ -11,6 +11,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         
         <link id="pagestyle" href="{{ asset("assets/css/styles.css") }}" rel="stylesheet">
 
@@ -31,6 +32,7 @@
 
         @stack("modals")
         @livewireScripts
+        @stack("scripts")
 
     </body>
 
