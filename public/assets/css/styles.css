@@ -1,0 +1,41 @@
+html, body {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.main{
+    background-color: #4E342E;
+}
+
+.bg-mid {
+  background-color: #3a4046 !important;
+  color: #fff;
+}
+
+.bg-mid::placeholder {
+    color: #a8a8a8;
+}
+
+.btn-mid{
+    background-color: #3a4046 !important;
+    color: #fff;
+}
+
+.btn-mid:hover{
+    background-color: #6c757d !important;
+}
+
+.border-mid {
+  border-color: #5c6166 !important;
+}
+
+.fs-lg{
+    font-size: 2rem !important;
+}
+
+.fs-xl {
+    font-size: 4rem !important;
+}
+
+.fs-xxl {
+    font-size: 8rem !important;
+}
