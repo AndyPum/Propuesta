@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('categoria');
             $table->decimal('precio', 8, 2)->nullable();
             $table->json('ingredientes')->nullable();
+            $table->string('imagen');
             $table->timestamps();
         });
     }

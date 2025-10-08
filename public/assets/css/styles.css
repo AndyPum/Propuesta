@@ -18,6 +18,7 @@ html, body {
 .btn-mid{
     background-color: #3a4046 !important;
     color: #fff;
+    cursor: pointer;
 }
 
 .btn-mid:hover{

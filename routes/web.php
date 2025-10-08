@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
 use App\Livewire\Mesas\Index as IndexMesas;
+
 use App\Livewire\Menus\Index as IndexMenus;
+use App\Livewire\Menus\Crear as CrearMenus;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
     
     Route::get('menus', IndexMenus::class)->name('menus');
+    Route::get('menus/crear', CrearMenus::class)->name('menus.crear');
 
     Route::get('settings/two-factor', TwoFactor::class)
         ->middleware(

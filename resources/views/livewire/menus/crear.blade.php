@@ -1,7 +1,20 @@
 <div>
-    <h2 class="text-white d-flex align-items-center mx-5 mb-3">
-        <i class="material-icons fs-2 me-2">add_box</i>Crear menú
-    </h2>
+    <div class="row align-items-center justify-content-between mx-4 mb-3">
+        <div class="col-auto d-flex align-items-center text-white">
+            <i class="material-icons fs-2 me-2">add</i>
+            <h2 class="m-0">Crear Menú</h2>
+        </div>
+        <div class="col-auto dropdown">
+            <button class="btn btn-mid d-flex align-items-center text-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="material-icons fs-3 me-1">add</i>
+                <span class="fs-6">Nueva categoría</span>
+            </button>
+            <div class="dropdown-menu p-3 bg-dark" style="min-width: 250px;">
+                <input type="text" wire:model="nueva_categoria" class="form-control mb-2 bg-mid text-light border border-secondary" placeholder="Nombre de la categoría">
+                <button type="button" wire:click="agregarCategoria" class="btn btn-success w-100">Guardar categoría</button>
+            </div>
+        </div>
+    </div>
     <div class="row d-flex justify-content-center h-100 w-100 gap-2">
         <div class="col-6 h-100 bg-mid p-2 rounded">
             <form wire:submit.prevent="submit" enctype="multipart/form-data" aria-describedby="form-description" class="align-items-center">
@@ -11,66 +24,15 @@
                 </div>
                 <div class="mb-3">
                     <label for="categoria_menu" class="form-label">Categoría del menú</label>
-                    <label for="categoria_menu" class="form-label">Categoría del menú</label>
-                    <select wire:model="categoria_menu" id="categoria_menu" class="form-select bg-mid text-light border border-secondary">
-                        <option value="">-- Selecciona una categoría --</option>
 
-                        <optgroup label="Entradas / Aperitivos">
-                            <option value="Sopas">Sopas</option>
-                            <option value="Ensaladas">Ensaladas</option>
-                            <option value="Bruschettas">Bruschettas</option>
-                            <option value="Tapas / Antojitos">Tapas / Antojitos</option>
-                            <option value="Nachos">Nachos</option>
-                            <option value="Calamares / Tempura">Calamares / Tempura</option>
-                            <option value="Samosas o empanadas">Samosas o empanadas</option>
-                            <option value="Finger foods">Finger foods</option>
-                        </optgroup>
-
-                        <optgroup label="Platos principales">
-                            <option value="Carnes">Carnes</option>
-                            <option value="Pescados y mariscos">Pescados y mariscos</option>
-                            <option value="Vegetarianos / Veganos">Vegetarianos / Veganos</option>
-                            <option value="Pastas y arroces">Pastas y arroces</option>
-                            <option value="Platos internacionales">Platos internacionales</option>
-                        </optgroup>
-
-                        <optgroup label="Acompañamientos / Guarniciones">
-                            <option value="Papas fritas o al horno">Papas fritas o al horno</option>
-                            <option value="Arroz">Arroz</option>
-                            <option value="Verduras al vapor o salteadas">Verduras al vapor o salteadas</option>
-                            <option value="Puré de papas">Puré de papas</option>
-                            <option value="Ensaladas pequeñas">Ensaladas pequeñas</option>
-                        </optgroup>
-
-                        <optgroup label="Pizzas y sandwiches / wraps">
-                            <option value="Pizzas clásicas y gourmet">Pizzas clásicas y gourmet</option>
-                            <option value="Hamburguesas">Hamburguesas</option>
-                            <option value="Sandwiches">Sandwiches</option>
-                            <option value="Wraps y burritos">Wraps y burritos</option>
-                        </optgroup>
-
-                        <optgroup label="Postres">
-                            <option value="Helados y sorbetes">Helados y sorbetes</option>
-                            <option value="Pasteles y tartas">Pasteles y tartas</option>
-                            <option value="Brownies y galletas">Brownies y galletas</option>
-                            <option value="Frutas frescas o macedonias">Frutas frescas o macedonias</option>
-                            <option value="Mousses y cremas">Mousses y cremas</option>
-                        </optgroup>
-
-                        <optgroup label="Bebidas">
-                            <option value="Refrescos y jugos naturales">Refrescos y jugos naturales</option>
-                            <option value="Café y té">Café y té</option>
-                            <option value="Smoothies y batidos">Smoothies y batidos</option>
-                            <option value="Cervezas, vinos y cocteles">Cervezas, vinos y cocteles</option>
-                        </optgroup>
-
-                        <optgroup label="Especiales / Promociones">
-                            <option value="Menú del día">Menú del día</option>
-                            <option value="Menú degustación">Menú degustación</option>
-                            <option value="Combos familiares">Combos familiares</option>
-                        </optgroup>
+                    <select wire:model="categoria_menu" class="form-select bg-mid text-light border border-secondary mt-2">
+                        <option value="">-- Selecciona categoría --</option>
+                        @foreach ($categorias as $cat)
+                            <option value="{{ $cat->nombre }}">{{ $cat->nombre }}</option>
+                        @endforeach
                     </select>
                 </div>
+
                 <div class="mb-3">
                     <label for="nombre_menu" class="form-label">Nombre del menú</label>
                     <div class="input-group">
@@ -86,6 +48,27 @@
                         <div id="ingredientes-grid" class="mt-3" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.5rem;">
                         </div>
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen del menú</label>
+                    <input type="file" class="form-control bg-mid text-light border border-secondary" wire:model="imagen" name="imagen_menu" id="nombre_menu">
+                </div>
+                <div class="col-md-12 mb-3">
+                    @error('imagen')
+                        <span class="text-danger" id="imagen-error">{{ $message }}</span>
+                    @enderror
+
+                    @if (isset($imagen) && $imagen && !is_string($imagen))
+                        <div class="mt-3">
+                            <label class="form-label fw-bold">Vista previa:</label><br />
+                            <img src="{{ $imagen->temporaryUrl() }}" width="200" class="rounded me-2 img-fluid border" alt="Vista previa de la imagen">
+                        </div>
+                    @elseif (isset($imagen) && is_string($imagen))
+                        <div class="mt-3">
+                            <label class="form-label fw-bold">Imagen actual:</label><br />
+                            <img src="{{ asset('storage/' . $imagen) }}" width="200" class="rounded me-2 img-fluid border" alt="Vista previa de la imagen guardada">
+                        </div>
+                    @endif
                 </div>
                 <button type="submit" class="btn-mid border border-secondary rounded p-2">Guardar</button>
             </form>

@@ -1,3 +1,3 @@
 <div>
-    <livewire:menus.crear />
+    <livewire:menus.todos />
 </div>

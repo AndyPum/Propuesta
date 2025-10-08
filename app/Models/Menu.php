@@ -15,7 +15,8 @@ class Menu extends Model
         'nombre',
         'categoria',
         'precio',
-        'ingredientes'
+        'ingredientes',
+        'imagen'
     ];
 
     protected $casts = [
